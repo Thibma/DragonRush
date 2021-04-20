@@ -1,11 +1,8 @@
 package fr.thibma.dragonrush.listeners;
 
+import fr.thibma.dragonrush.events.DisplaySelectionClassesEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,6 +18,11 @@ public class RightClickListener implements Listener {
 
         if (item == null) {
             return;
+        }
+
+        if (item.getType() == Material.NETHERITE_AXE) {
+            DisplaySelectionClassesEvent displaySelectionClassesEvent = new DisplaySelectionClassesEvent();
+            Bukkit.getServer().getPluginManager().callEvent(displaySelectionClassesEvent);
         }
     }
 

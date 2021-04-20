@@ -1,10 +1,11 @@
 package fr.thibma.dragonrush;
 
+import fr.thibma.dragonrush.classes.Classes;
+import fr.thibma.dragonrush.listeners.DisplaySelectionClassesListener;
 import fr.thibma.dragonrush.listeners.EntityDeathListener;
 import fr.thibma.dragonrush.listeners.PlayerJoinListener;
 import fr.thibma.dragonrush.listeners.RightClickListener;
 import fr.thibma.dragonrush.players.Team;
-import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,7 +15,8 @@ import java.util.List;
 public class DragonRush extends JavaPlugin {
 
     private State state;
-    private List<Team> teamList = new ArrayList<>();
+    public static List<Team> teamList = new ArrayList<>();
+    public static Classes classes = new Classes();
 
     @Override
     public void onEnable() {
@@ -25,9 +27,10 @@ public class DragonRush extends JavaPlugin {
         teamList.add(new Team("Bleue", DyeColor.BLUE));
 
         // register fr.thibma.dragonrush.listeners
-        this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(this.teamList), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         this.getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
         this.getServer().getPluginManager().registerEvents(new RightClickListener(), this);
+        this.getServer().getPluginManager().registerEvents(new DisplaySelectionClassesListener(), this);
     }
 
     void setState(State state) {

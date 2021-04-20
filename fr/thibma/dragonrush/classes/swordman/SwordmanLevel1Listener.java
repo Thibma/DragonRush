@@ -20,15 +20,17 @@ public class SwordmanLevel1Listener implements Listener {
         Entity entity = event.getEntity();
         Player player = event.getEntity().getKiller();
 
-        if (player == null) {
+        if (player == null || player != swordman.getPlayer() || entity.getType() != EntityType.PIGLIN) {
             return;
         }
 
-        System.out.println("KILL");
-        if (player != this.swordman.getPlayer() || entity.getType() != EntityType.PIGLIN) {
-            return;
+        player.sendMessage("Piglin tué");
+        swordman.piglinKilled++;
+        if (swordman.piglinKilled == 5) {
+            player.sendMessage("Objectif atteint !");
+            swordman.objectiveLevel2();
         }
-        System.out.println(entity.getType().toString() + " " + player + " good !");
+
     }
 
 }
