@@ -7,28 +7,28 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-public class SwordmanLevel1Listener implements Listener {
+public class SwordmanLevel2Listener implements Listener {
 
     private final Swordman swordman;
 
-    public SwordmanLevel1Listener(Swordman swordman) {
+    public SwordmanLevel2Listener(Swordman swordman) {
         this.swordman = swordman;
     }
 
     @EventHandler
-    void onPillagerKilled(EntityDeathEvent event) {
+    void onPiglinKilled(EntityDeathEvent event) {
         Entity entity = event.getEntity();
         Player player = event.getEntity().getKiller();
 
-        if (player == null || player != swordman.getPlayer() || entity.getType() != EntityType.PILLAGER) {
+        if (player == null || player != swordman.getPlayer() || entity.getType() != EntityType.PIGLIN) {
             return;
         }
 
-        player.sendMessage("Pillager tué");
-        swordman.pillagerKilled++;
-        if (swordman.pillagerKilled == 5) {
+        player.sendMessage("Piglin tué");
+        swordman.piglinKilled++;
+        if (swordman.piglinKilled == 10) {
             player.sendMessage("Objectif atteint !");
-            swordman.objectiveLevel2();
+            swordman.objectiveLevel3();
         }
 
     }

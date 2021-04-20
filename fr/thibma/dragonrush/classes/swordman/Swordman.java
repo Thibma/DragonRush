@@ -7,10 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -24,8 +22,12 @@ import java.util.UUID;
 public class Swordman extends Class {
 
     private final SwordmanLevel1Listener swordmanLevel1Listener = new SwordmanLevel1Listener(this);
+    private final SwordmanLevel2Listener swordmanLevel2Listener = new SwordmanLevel2Listener(this);
     private final SwordmanLevel2 swordmanLevel2 = new SwordmanLevel2(this);
+    private final SwordmanLevel3 swordmanLevel3 = new SwordmanLevel3(this);
+    private final SwordmanDisadvantages swordmanDisadvantages = new SwordmanDisadvantages(this);
 
+    protected int pillagerKilled = 0;
     protected int piglinKilled = 0;
 
     public Swordman(Player player) {
@@ -68,8 +70,9 @@ public class Swordman extends Class {
 
         this.player.getInventory().addItem(stoneSword);
 
-        Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
-        this.objectiveLevel2();
+        Bukkit.getServer().getPluginManager().registerEvents(this.swordmanDisadvantages, JavaPlugin.getPlugin(DragonRush.class));
+        //Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
+        this.objectiveLevel3();
 
     }
 
@@ -80,12 +83,12 @@ public class Swordman extends Class {
 
     @Override
     public void level2() {
-
+        // Nothing
     }
 
     @Override
     public void level3() {
-
+        // Nothing
     }
 
     @Override
@@ -93,16 +96,20 @@ public class Swordman extends Class {
         this.level = 2;
         HandlerList.unregisterAll(this.swordmanLevel1Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel2, JavaPlugin.getPlugin(DragonRush.class));
+        Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel2Listener, JavaPlugin.getPlugin(DragonRush.class));
     }
 
     @Override
     public void objectiveLevel3() {
-
+        this.level = 3;
+        HandlerList.unregisterAll(this.swordmanLevel2Listener);
+        Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel3, JavaPlugin.getPlugin(DragonRush.class));
     }
 
     @Override
     public void destructor() {
         HandlerList.unregisterAll(this.swordmanLevel1Listener);
         HandlerList.unregisterAll(this.swordmanLevel2);
+        HandlerList.unregisterAll(this.swordmanLevel2Listener);
     }
 }

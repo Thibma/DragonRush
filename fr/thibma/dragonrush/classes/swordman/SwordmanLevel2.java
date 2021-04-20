@@ -131,14 +131,24 @@ public class SwordmanLevel2 implements Listener {
         if (!(material == Material.WOODEN_SWORD || material == Material.STONE_SWORD || material == Material.IRON_SWORD || material == Material.GOLDEN_SWORD || material == Material.DIAMOND_SWORD || material == Material.NETHERITE_SWORD)) {
             if (this.onSword) {
                 this.onSword = false;
-                this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() - 1);
+                if (this.swordman.getLevel() == 2) {
+                    this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() - 1);
+                }
+                else if (this.swordman.getLevel() == 3) {
+                    this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() - 2);
+                }
                 this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).getBaseValue() - 0.2);
             }
         }
         else {
             if (!this.onSword) {
                 this.onSword = true;
-                this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() + 1);
+                if (this.swordman.getLevel() == 2) {
+                    this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() + 1);
+                }
+                else if (this.swordman.getLevel() == 3) {
+                    this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() + 2);
+                }
                 this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(this.swordman.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).getBaseValue() + 0.2);
             }
         }
