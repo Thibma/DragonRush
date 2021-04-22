@@ -12,8 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public final class ClassSelection {
 
@@ -27,7 +25,7 @@ public final class ClassSelection {
                 item = new ItemStack(Material.IRON_SWORD);
                 itemMeta = item.getItemMeta();
                 itemMeta.setDisplayName("§7§lÉpéiste");
-                itemLore.add("§7Catégorie :§c DPS");
+                itemLore.add("§7Catégorie :§c DPS mêlée");
                 itemLore.add("§7Description : §fClasse standard se battant");
                 itemLore.add("§fà l'aide d'une épée.");
                 itemLore.add("§7Avantages : §aFort au corps à corps avec une");
@@ -42,6 +40,19 @@ public final class ClassSelection {
             }
             case ARCHER -> {
                 item = new ItemStack(Material.BOW);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lArcher");
+                itemLore.add("§7Catégorie :§c DPS à distance");
+                itemLore.add("§7Description : §fClasse standard se battant");
+                itemLore.add("§fà l'aide d'un arc.");
+                itemLore.add("§7Avantages : §aFort à distance avec un");
+                itemLore.add("§aarc.");
+                itemLore.add("§7Désavantages : §cTrès faible au corps à corps");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case LANCER -> {

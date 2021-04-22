@@ -18,12 +18,10 @@ public abstract class Class {
     public abstract ClassEnums getEnum();
 
     public abstract void atBegining();
-    public abstract void level1();
-    public abstract void level2();
-    public abstract void level3();
-
     public abstract void objectiveLevel2();
     public abstract void objectiveLevel3();
+
+    public abstract void potionEffect();
 
     public abstract void destructor();
 }

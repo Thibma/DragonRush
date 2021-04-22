@@ -71,24 +71,8 @@ public class Swordman extends Class {
         this.player.getInventory().addItem(stoneSword);
 
         Bukkit.getServer().getPluginManager().registerEvents(this.swordmanDisadvantages, JavaPlugin.getPlugin(DragonRush.class));
-        //Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
-        this.objectiveLevel3();
+        Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
 
-    }
-
-    @Override
-    public void level1() {
-        // Nothing
-    }
-
-    @Override
-    public void level2() {
-        // Nothing
-    }
-
-    @Override
-    public void level3() {
-        // Nothing
     }
 
     @Override
@@ -107,9 +91,16 @@ public class Swordman extends Class {
     }
 
     @Override
+    public void potionEffect() {
+        // Nothing
+    }
+
+    @Override
     public void destructor() {
         HandlerList.unregisterAll(this.swordmanLevel1Listener);
         HandlerList.unregisterAll(this.swordmanLevel2);
         HandlerList.unregisterAll(this.swordmanLevel2Listener);
+        HandlerList.unregisterAll(this.swordmanLevel3);
+        HandlerList.unregisterAll(this.swordmanDisadvantages);
     }
 }
