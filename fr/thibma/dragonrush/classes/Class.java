@@ -12,9 +12,6 @@ public abstract class Class {
     public int getLevel() { return this.level; }
     public Player getPlayer() { return player; }
 
-    public abstract String getName();
-    public abstract List<String> getDescription();
-
     public abstract ClassEnums getEnum();
 
     public abstract void atBegining();

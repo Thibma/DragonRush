@@ -35,16 +35,6 @@ public class Swordman extends Class {
     }
 
     @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public List<String> getDescription() {
-        return null;
-    }
-
-    @Override
     public ClassEnums getEnum() {
         return ClassEnums.SWORDSMAN;
     }

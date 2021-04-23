@@ -33,18 +33,8 @@ public class Archer extends Class {
     public Archer(Player player) { this.player = player; }
 
     @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public List<String> getDescription() {
-        return null;
-    }
-
-    @Override
     public ClassEnums getEnum() {
-        return null;
+        return ClassEnums.ARCHER;
     }
 
     @Override
@@ -57,8 +47,8 @@ public class Archer extends Class {
         lore.add("§aUn arc fait de bois donné à des");
         lore.add("§aapprentis archers.");
         lore.add("");
-        lore.add("§7Dans la main principale : ");
-        lore.add("§2 1 dégât -> 10 dégâts");
+        lore.add("§7Projectile tiré : ");
+        lore.add("§2 1 point d'attaque -> 10 points d'attaque");
         lore.add("§2 (En fonction de la charge)");
         itemMeta.setLore(lore);
         itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -79,6 +69,7 @@ public class Archer extends Class {
 
         Bukkit.getServer().getPluginManager().registerEvents(this.archerLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(16);
+        this.player.setHealth(16);
         this.player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(-2);
 
         this.objectiveLevel2();

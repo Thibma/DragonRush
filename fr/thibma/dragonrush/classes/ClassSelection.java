@@ -1,6 +1,7 @@
 package fr.thibma.dragonrush.classes;
 
 import fr.thibma.dragonrush.classes.archer.Archer;
+import fr.thibma.dragonrush.classes.lancer.Lancer;
 import fr.thibma.dragonrush.classes.swordman.Swordman;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -57,6 +58,19 @@ public final class ClassSelection {
             }
             case LANCER -> {
                 item = new ItemStack(Material.TRIDENT);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lLancier");
+                itemLore.add("§7Catégorie :§c DPS mid-range");
+                itemLore.add("§7Description : §fClasse standard se battant");
+                itemLore.add("§fà l'aide d'une lance.");
+                itemLore.add("§7Avantages : §aFort au corps à corps et");
+                itemLore.add("§aà distance.");
+                itemLore.add("§7Désavantages : §cFaible sur toutes les autres armes.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case BERSERKER -> {
@@ -128,6 +142,9 @@ public final class ClassSelection {
             }
             case ARCHER -> {
                 return new Archer(player);
+            }
+            case LANCER -> {
+                return new Lancer(player);
             }
         }
         return null;
