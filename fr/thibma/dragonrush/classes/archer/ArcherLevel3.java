@@ -1,6 +1,7 @@
 package fr.thibma.dragonrush.classes.archer;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -41,8 +42,13 @@ public class ArcherLevel3 implements Listener {
             return;
         }
 
-        // DO THIS
-        if (player.getInventory().getItemInMainHand().getType())
+        if (player.getInventory().getItemInMainHand().getType() == Material.CROSSBOW || player.getInventory().getItemInOffHand().getType() == Material.CROSSBOW) {
+            return;
+        }
+
+        if (player.getInventory().getItemInMainHand().getEnchantments().containsKey(Enchantment.ARROW_INFINITE) || player.getInventory().getItemInOffHand().getEnchantments().containsKey(Enchantment.ARROW_INFINITE)) {
+            return;
+        }
 
         arrow.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
         ItemStack arrowItem = new ItemStack(Material.ARROW);

@@ -122,11 +122,15 @@ public class ArcherLevel2 implements Listener {
             return;
         }
 
+        if (player.getInventory().getItemInMainHand().getType() == Material.CROSSBOW || player.getInventory().getItemInOffHand().getType() == Material.CROSSBOW) {
+            return;
+        }
+
         if (this.archer.getLevel() == 2) {
-            event.setDamage(event.getDamage() + (event.getDamage() * 25 / 100));
+            event.setDamage(event.getDamage() + (event.getDamage() * 10 / 100));
         }
         else if (this.archer.getLevel() == 3) {
-            event.setDamage(event.getDamage() + (event.getDamage() * 50 / 100));
+            event.setDamage(event.getDamage() + (event.getDamage() * 20 / 100));
         }
 
     }

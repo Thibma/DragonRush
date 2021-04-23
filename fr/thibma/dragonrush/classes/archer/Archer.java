@@ -79,8 +79,9 @@ public class Archer extends Class {
 
         Bukkit.getServer().getPluginManager().registerEvents(this.archerLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(16);
-        this.player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(0);
+        this.player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(-2);
 
+        this.objectiveLevel2();
         this.objectiveLevel3();
     }
 
@@ -96,6 +97,8 @@ public class Archer extends Class {
     public void objectiveLevel3() {
         this.level = 3;
         this.potionEffect();
+        System.out.println(this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getBaseValue());
+        this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.12);
         HandlerList.unregisterAll(this.archerLevel2Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.archerLevel3, JavaPlugin.getPlugin(DragonRush.class));
     }
