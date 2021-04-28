@@ -25,6 +25,7 @@ public class Lancer extends Class {
     private final LancerLevel1Listener lancerLevel1Listener = new LancerLevel1Listener(this);
     private final LancerLevel2 lancerLevel2 = new LancerLevel2(this);
     private final LancerLevel2Listener lancerLevel2Listener = new LancerLevel2Listener(this);
+    private final LancerDisadvantage lancerDisadvantage = new LancerDisadvantage(this);
 
     protected int creeperKilled = 0;
     protected int hoglinKilled = 0;
@@ -59,6 +60,7 @@ public class Lancer extends Class {
 
         Bukkit.getServer().getPluginManager().registerEvents(this.lancerLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
         Bukkit.getServer().getPluginManager().registerEvents(this.lancerProtection, JavaPlugin.getPlugin(DragonRush.class));
+        Bukkit.getServer().getPluginManager().registerEvents(this.lancerDisadvantage, JavaPlugin.getPlugin(DragonRush.class));
         this.objectiveLevel2();
         this.objectiveLevel3();
     }
@@ -157,6 +159,7 @@ public class Lancer extends Class {
         HandlerList.unregisterAll(this.lancerProtection);
         HandlerList.unregisterAll(this.lancerLevel2);
         HandlerList.unregisterAll(this.lancerLevel2Listener);
+        HandlerList.unregisterAll(this.lancerDisadvantage);
     }
 
     protected final String getStringofWeapon1 = "§fLance de bronze";

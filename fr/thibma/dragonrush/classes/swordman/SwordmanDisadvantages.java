@@ -27,6 +27,6 @@ public class SwordmanDisadvantages implements Listener {
         if (player != this.swordman.getPlayer()) {
             return;
         }
-        event.setDamage(event.getDamage() - 2.5);
+        event.setDamage(event.getDamage() - (event.getDamage() * 50 / 100));
     }
 }

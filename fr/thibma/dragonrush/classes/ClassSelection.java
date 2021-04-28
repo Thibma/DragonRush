@@ -1,6 +1,7 @@
 package fr.thibma.dragonrush.classes;
 
 import fr.thibma.dragonrush.classes.archer.Archer;
+import fr.thibma.dragonrush.classes.berserker.Berserker;
 import fr.thibma.dragonrush.classes.lancer.Lancer;
 import fr.thibma.dragonrush.classes.swordman.Swordman;
 import org.bukkit.Bukkit;
@@ -75,6 +76,19 @@ public final class ClassSelection {
             }
             case BERSERKER -> {
                 item = new ItemStack(Material.IRON_AXE);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lBerserker");
+                itemLore.add("§7Catégorie :§c DPS Tank");
+                itemLore.add("§7Description : §fClasse basique permettant de faire");
+                itemLore.add("§fde gros dégâts et d'être putôt tanky.");
+                itemLore.add("§7Avantages : §aFort au corps à corps et en");
+                itemLore.add("§adébut de partie.");
+                itemLore.add("§7Désavantages : §cPlus faible à la fin et plutôt basique.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case PALADIN -> {
@@ -145,6 +159,9 @@ public final class ClassSelection {
             }
             case LANCER -> {
                 return new Lancer(player);
+            }
+            case BERSERKER -> {
+                return new Berserker(player);
             }
         }
         return null;
