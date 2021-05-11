@@ -67,7 +67,7 @@ public class Swordman extends Class {
 
     @Override
     public void objectiveLevel2() {
-        this.level = 2;
+        super.objectiveLevel2();
         HandlerList.unregisterAll(this.swordmanLevel1Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel2, JavaPlugin.getPlugin(DragonRush.class));
         Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel2Listener, JavaPlugin.getPlugin(DragonRush.class));
@@ -75,7 +75,7 @@ public class Swordman extends Class {
 
     @Override
     public void objectiveLevel3() {
-        this.level = 3;
+        super.objectiveLevel3();
         HandlerList.unregisterAll(this.swordmanLevel2Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel3, JavaPlugin.getPlugin(DragonRush.class));
     }

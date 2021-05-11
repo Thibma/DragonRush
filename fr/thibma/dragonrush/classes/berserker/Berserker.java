@@ -69,6 +69,7 @@ public class Berserker extends Class {
 
     @Override
     public void objectiveLevel3() {
+        super.objectiveLevel3();
         HandlerList.unregisterAll(this.berserkerLevel2Listener);
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(30);
         this.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue() + 2);

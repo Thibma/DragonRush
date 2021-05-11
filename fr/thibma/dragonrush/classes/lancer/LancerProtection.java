@@ -41,7 +41,8 @@ public class LancerProtection implements Listener {
                 return;
             }
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals(this.lancer.getStringofWeapon1)
-                    || event.getCurrentItem().getItemMeta().getDisplayName().equals(this.lancer.getStringofWeapon2)) {
+                    || event.getCurrentItem().getItemMeta().getDisplayName().equals(this.lancer.getStringofWeapon2)
+                    || event.getCurrentItem().getItemMeta().getDisplayName().equals(this.lancer.getStringofWeapon3)) {
                 event.setCancelled(true);
             }
         }

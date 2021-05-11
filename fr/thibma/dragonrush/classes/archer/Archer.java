@@ -78,7 +78,7 @@ public class Archer extends Class {
 
     @Override
     public void objectiveLevel2() {
-        this.level = 2;
+        super.objectiveLevel2();
         HandlerList.unregisterAll(this.archerLevel1Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.archerLevel2, JavaPlugin.getPlugin(DragonRush.class));
         Bukkit.getServer().getPluginManager().registerEvents(this.archerLevel2Listener, JavaPlugin.getPlugin(DragonRush.class));
@@ -86,7 +86,7 @@ public class Archer extends Class {
 
     @Override
     public void objectiveLevel3() {
-        this.level = 3;
+        super.objectiveLevel3();
         this.potionEffect();
         System.out.println(this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getBaseValue());
         this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.12);

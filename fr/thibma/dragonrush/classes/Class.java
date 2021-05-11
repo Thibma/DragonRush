@@ -15,10 +15,13 @@ public abstract class Class {
     public abstract ClassEnums getEnum();
 
     public abstract void atBegining();
+
     public void objectiveLevel2() {
-        System.out.println("level 2 done");
+        this.level = 2;
     }
-    public abstract void objectiveLevel3();
+    public void objectiveLevel3() {
+        this.level = 3;
+    }
 
     public abstract void potionEffect();
 

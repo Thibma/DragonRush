@@ -1,8 +1,11 @@
 package fr.thibma.dragonrush.classes;
 
 import fr.thibma.dragonrush.classes.archer.Archer;
+import fr.thibma.dragonrush.classes.assassin.Assassin;
 import fr.thibma.dragonrush.classes.berserker.Berserker;
 import fr.thibma.dragonrush.classes.lancer.Lancer;
+import fr.thibma.dragonrush.classes.nether_explorer.NetherExplorer;
+import fr.thibma.dragonrush.classes.paladin.Paladin;
 import fr.thibma.dragonrush.classes.swordman.Swordman;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -93,14 +96,56 @@ public final class ClassSelection {
             }
             case PALADIN -> {
                 item = new ItemStack(Material.SHIELD);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lPaladin");
+                itemLore.add("§7Catégorie :§c Tank - Support");
+                itemLore.add("§7Description : §fClasse défensive protégeant ses");
+                itemLore.add("§falliés avec son bouclier.");
+                itemLore.add("§7Avantages : §aExcellente défense et utile pour");
+                itemLore.add("§al'équipe.");
+                itemLore.add("§7Désavantages : §cDégâts faibles.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case ASSASSIN -> {
                 item = new ItemStack(Material.GUNPOWDER);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lAssassin");
+                itemLore.add("§7Catégorie :§c DPS - One shot");
+                itemLore.add("§7Description : §fClasse offensive permettant");
+                itemLore.add("§fd'engager un combat facilement en assassinant ses");
+                itemLore.add("§fennemis.");
+                itemLore.add("§7Avantages : §aTrès gros dégâts en début de combat.");
+                itemLore.add("§aBonne mobilité.");
+                itemLore.add("§7Désavantages : §cTrès faible défense.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case NETHER_EXPLORER -> {
                 item = new ItemStack(Material.NETHERRACK);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lExplorateur du Nether");
+                itemLore.add("§7Catégorie :§c Support - Exploration");
+                itemLore.add("§7Description : §fClasse de support pouvant aider son");
+                itemLore.add("§féquipe dans les dimensions du Nether et de l'End.");
+                itemLore.add("§fPeut même générer des portails.");
+                itemLore.add("§7Avantages : §aTrès utile dans le Nether et dans");
+                itemLore.add("§al'End.");
+                itemLore.add("§7Désavantages : §cInutile au début et plutôt");
+                itemLore.add("§csituationnel.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case MINER -> {
@@ -162,6 +207,15 @@ public final class ClassSelection {
             }
             case BERSERKER -> {
                 return new Berserker(player);
+            }
+            case PALADIN -> {
+                return new Paladin(player);
+            }
+            case ASSASSIN -> {
+                return new Assassin(player);
+            }
+            case NETHER_EXPLORER -> {
+                return new NetherExplorer(player);
             }
         }
         return null;

@@ -67,7 +67,7 @@ public class Lancer extends Class {
 
     @Override
     public void objectiveLevel2() {
-        this.level = 2;
+        super.objectiveLevel2();
         HandlerList.unregisterAll(this.lancerLevel1Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.lancerLevel2, JavaPlugin.getPlugin(DragonRush.class));
         Bukkit.getServer().getPluginManager().registerEvents(this.lancerLevel2Listener, JavaPlugin.getPlugin(DragonRush.class));
@@ -109,7 +109,7 @@ public class Lancer extends Class {
 
     @Override
     public void objectiveLevel3() {
-        this.level = 3;
+        super.objectiveLevel3();
         HandlerList.unregisterAll(this.lancerLevel2Listener);
 
         for (ItemStack itemStack : this.getPlayer().getInventory()) {
