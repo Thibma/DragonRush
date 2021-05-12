@@ -57,10 +57,10 @@ public class ArcherLevel2 implements Listener {
             int level = player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
             switch (level) {
                 case 1 -> {
-                    if (random > 14.29) {
+                    if (random >= 14.29) {
                         location.getWorld().dropItemNaturally(location, new ItemStack(Material.GRAVEL));
                     }
-                    else if (random > 5 && random < 14.29) {
+                    else if (random >= 5 && random < 14.29) {
                         arrow.setAmount(1);
                         location.getWorld().dropItemNaturally(location, arrow);
                     }
@@ -70,10 +70,10 @@ public class ArcherLevel2 implements Listener {
                     }
                 }
                 case 2 -> {
-                    if (random > 25) {
+                    if (random >= 25) {
                         location.getWorld().dropItemNaturally(location, new ItemStack(Material.GRAVEL));
                     }
-                    else if (random > 14.29 && random < 25) {
+                    else if (random >= 14.29 && random < 25) {
                         arrow.setAmount(1);
                         location.getWorld().dropItemNaturally(location, arrow);
                     }
@@ -83,7 +83,7 @@ public class ArcherLevel2 implements Listener {
                     }
                 }
                 case 3 -> {
-                    if (random > 35) {
+                    if (random >= 35) {
                         arrow.setAmount(1);
                     }
                     else {

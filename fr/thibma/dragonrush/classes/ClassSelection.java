@@ -4,6 +4,7 @@ import fr.thibma.dragonrush.classes.archer.Archer;
 import fr.thibma.dragonrush.classes.assassin.Assassin;
 import fr.thibma.dragonrush.classes.berserker.Berserker;
 import fr.thibma.dragonrush.classes.lancer.Lancer;
+import fr.thibma.dragonrush.classes.miner.Miner;
 import fr.thibma.dragonrush.classes.nether_explorer.NetherExplorer;
 import fr.thibma.dragonrush.classes.paladin.Paladin;
 import fr.thibma.dragonrush.classes.swordman.Swordman;
@@ -150,6 +151,19 @@ public final class ClassSelection {
             }
             case MINER -> {
                 item = new ItemStack(Material.IRON_PICKAXE);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lMineur");
+                itemLore.add("§7Catégorie :§c Support - Farming");
+                itemLore.add("§7Description : §fClasse de support aidant son équipe");
+                itemLore.add("§fà mieux s'équiper puisqu'il permet de récupérer plus");
+                itemLore.add("§fde ressources type minerais.");
+                itemLore.add("§7Avantages : §aTrès bon farming tout le long du jeu.");
+                itemLore.add("§7Désavantages : §cInutile en combat.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case FISHMAN -> {
@@ -216,6 +230,9 @@ public final class ClassSelection {
             }
             case NETHER_EXPLORER -> {
                 return new NetherExplorer(player);
+            }
+            case MINER -> {
+                return new Miner(player);
             }
         }
         return null;
