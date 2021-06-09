@@ -3,6 +3,8 @@ package fr.thibma.dragonrush.classes;
 import fr.thibma.dragonrush.classes.archer.Archer;
 import fr.thibma.dragonrush.classes.assassin.Assassin;
 import fr.thibma.dragonrush.classes.berserker.Berserker;
+import fr.thibma.dragonrush.classes.fishman.Fishman;
+import fr.thibma.dragonrush.classes.hunter.Hunter;
 import fr.thibma.dragonrush.classes.lancer.Lancer;
 import fr.thibma.dragonrush.classes.miner.Miner;
 import fr.thibma.dragonrush.classes.nether_explorer.NetherExplorer;
@@ -168,10 +170,40 @@ public final class ClassSelection {
             }
             case FISHMAN -> {
                 item = new ItemStack(Material.PUFFERFISH);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lHomme-Poisson");
+                itemLore.add("§7Catégorie :§c Support et survavibilité dans l'eau");
+                itemLore.add("§7Description : §fClasse très spéciale se battant");
+                itemLore.add("§fet se déplaçant en grande majorité dans l'eau.");
+                itemLore.add("§fMeilleur stats sous l'eau et peut les donner à");
+                itemLore.add("§fses alliés.");
+                itemLore.add("§7Avantages : §aTrès fort en zone aqueuse.");
+                itemLore.add("§7Désavantages : §cSur Terre est dans le Nether,");
+                itemLore.add("§ctrès inutile et situationnel.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case HUNTER -> {
                 item = new ItemStack(Material.BONE);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lChasseur");
+                itemLore.add("§7Catégorie :§c Farming");
+                itemLore.add("§7Description : §fClasse de farming ayant pour");
+                itemLore.add("§fobjectif de tuer un maximum d'entités pour mieux");
+                itemLore.add("§fs'équiper. Peut invoquer des mobs pour l'aider en");
+                itemLore.add("§fcombat.");
+                itemLore.add("§7Avantages : §aTrès bon farming et marionnetiste");
+                itemLore.add("§7Désavantages : §cPeu utile en combat contre");
+                itemLore.add("§cles autres joueurs.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case ALCHEMIST -> {
@@ -233,6 +265,12 @@ public final class ClassSelection {
             }
             case MINER -> {
                 return new Miner(player);
+            }
+            case FISHMAN -> {
+                return new Fishman(player);
+            }
+            case HUNTER -> {
+                return new Hunter(player);
             }
         }
         return null;

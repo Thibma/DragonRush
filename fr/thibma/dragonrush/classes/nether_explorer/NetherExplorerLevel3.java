@@ -28,7 +28,7 @@ public class NetherExplorerLevel3 implements Listener {
     private int cooldown = maxCooldown;
 
     private final int portalMaxCooldown = 10;
-    int portalCooldown = portalMaxCooldown;
+    private int portalCooldown = portalMaxCooldown;
 
     public NetherExplorerLevel3 (NetherExplorer netherExplorer) { this.netherExplorer = netherExplorer; }
 

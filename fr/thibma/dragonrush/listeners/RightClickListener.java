@@ -1,9 +1,12 @@
 package fr.thibma.dragonrush.listeners;
 
+import fr.thibma.dragonrush.classes.hunter.HunterBear;
 import fr.thibma.dragonrush.events.DisplaySelectionClassesEvent;
 import fr.thibma.dragonrush.events.DisplaySelectionTeamEvent;
+import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +30,11 @@ public class RightClickListener implements Listener {
         }
         else if (item.getType() == Material.DIAMOND) {
             Bukkit.getServer().getPluginManager().callEvent(new DisplaySelectionTeamEvent(player));
+        }
+        else if (item.getType() == Material.IRON_INGOT) {
+            WorldServer worldServer = ((CraftWorld) player.getWorld()).getHandle();
+            HunterBear hunterBear = new HunterBear(player.getLocation(), player);
+            worldServer.addEntity(hunterBear);
         }
     }
 
