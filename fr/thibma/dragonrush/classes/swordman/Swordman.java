@@ -40,6 +40,11 @@ public class Swordman extends Class {
     }
 
     @Override
+    public String getClassName() {
+        return "Épéiste";
+    }
+
+    @Override
     public void atBegining() {
         ItemStack stoneSword = new ItemStack(Material.STONE_SWORD);
         ItemMeta itemMeta = stoneSword.getItemMeta();

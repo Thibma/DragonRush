@@ -1,5 +1,7 @@
 package fr.thibma.dragonrush.listeners;
 
+import fr.minuskube.netherboard.Netherboard;
+import fr.minuskube.netherboard.bukkit.BPlayerBoard;
 import fr.thibma.dragonrush.DragonRush;
 import fr.thibma.dragonrush.classes.ClassEnums;
 import fr.thibma.dragonrush.classes.ClassSelection;
@@ -40,7 +42,7 @@ public class DisplaySelectionClassesListener implements Listener {
 
         final ItemStack clickedItem = event.getCurrentItem();
 
-        if (clickedItem == null || clickedItem.getType() == Material.AIR) {
+        if (clickedItem == null || clickedItem.getType() == Material.AIR || clickedItem.getType() == Material.BARRIER || clickedItem.getType() == Material.BLACK_STAINED_GLASS_PANE) {
             return;
         }
 
@@ -49,6 +51,8 @@ public class DisplaySelectionClassesListener implements Listener {
         //player.sendMessage("Choix de la classe : " + ClassSelection.getClassEnum(event.getSlot()));
         DragonRush.classes.addClass(ClassSelection.getClass(ClassSelection.getClassEnum(event.getSlot()), player));
         DragonRush.classes.getPlayerClass(player).atBegining();
+        BPlayerBoard board = Netherboard.instance().getBoard(player);
+        board.set("§7§l" + DragonRush.classes.getPlayerClass(player).getClassName(), 8);
     }
 
     @EventHandler

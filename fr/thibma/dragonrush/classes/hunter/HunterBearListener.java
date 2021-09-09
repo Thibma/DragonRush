@@ -1,8 +1,6 @@
 package fr.thibma.dragonrush.classes.hunter;
 
 import fr.thibma.dragonrush.DragonRush;
-import net.minecraft.server.v1_16_R3.EntityPolarBear;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPolarBear;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.PolarBear;

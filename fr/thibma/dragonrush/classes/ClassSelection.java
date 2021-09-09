@@ -1,8 +1,10 @@
 package fr.thibma.dragonrush.classes;
 
+import fr.thibma.dragonrush.classes.alchimist.Alchimist;
 import fr.thibma.dragonrush.classes.archer.Archer;
 import fr.thibma.dragonrush.classes.assassin.Assassin;
 import fr.thibma.dragonrush.classes.berserker.Berserker;
+import fr.thibma.dragonrush.classes.blacksmith.Blacksmith;
 import fr.thibma.dragonrush.classes.fishman.Fishman;
 import fr.thibma.dragonrush.classes.hunter.Hunter;
 import fr.thibma.dragonrush.classes.lancer.Lancer;
@@ -12,14 +14,18 @@ import fr.thibma.dragonrush.classes.paladin.Paladin;
 import fr.thibma.dragonrush.classes.swordman.Swordman;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public final class ClassSelection {
 
@@ -86,7 +92,7 @@ public final class ClassSelection {
                 itemMeta.setDisplayName("§7§lBerserker");
                 itemLore.add("§7Catégorie :§c DPS Tank");
                 itemLore.add("§7Description : §fClasse basique permettant de faire");
-                itemLore.add("§fde gros dégâts et d'être putôt tanky.");
+                itemLore.add("§fde gros dégâts et d'être plutôt tanky.");
                 itemLore.add("§7Avantages : §aFort au corps à corps et en");
                 itemLore.add("§adébut de partie.");
                 itemLore.add("§7Désavantages : §cPlus faible à la fin et plutôt basique.");
@@ -175,7 +181,7 @@ public final class ClassSelection {
                 itemLore.add("§7Catégorie :§c Support et survavibilité dans l'eau");
                 itemLore.add("§7Description : §fClasse très spéciale se battant");
                 itemLore.add("§fet se déplaçant en grande majorité dans l'eau.");
-                itemLore.add("§fMeilleur stats sous l'eau et peut les donner à");
+                itemLore.add("§fMeilleures stats sous l'eau et peut les donner à");
                 itemLore.add("§fses alliés.");
                 itemLore.add("§7Avantages : §aTrès fort en zone aqueuse.");
                 itemLore.add("§7Désavantages : §cSur Terre est dans le Nether,");
@@ -188,15 +194,15 @@ public final class ClassSelection {
                 return item;
             }
             case HUNTER -> {
-                item = new ItemStack(Material.BONE);
+                /*item = new ItemStack(Material.BONE);
                 itemMeta = item.getItemMeta();
                 itemMeta.setDisplayName("§7§lChasseur");
-                itemLore.add("§7Catégorie :§c Farming");
+                itemLore.add("§7Catégorie :§c Farming et combat à distance");
                 itemLore.add("§7Description : §fClasse de farming ayant pour");
                 itemLore.add("§fobjectif de tuer un maximum d'entités pour mieux");
                 itemLore.add("§fs'équiper. Peut invoquer des mobs pour l'aider en");
                 itemLore.add("§fcombat.");
-                itemLore.add("§7Avantages : §aTrès bon farming et marionnetiste");
+                itemLore.add("§7Avantages : §aTrès bon farming et marionnetiste.");
                 itemLore.add("§7Désavantages : §cPeu utile en combat contre");
                 itemLore.add("§cles autres joueurs.");
                 itemMeta.setLore(itemLore);
@@ -204,14 +210,60 @@ public final class ClassSelection {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
                 item.setItemMeta(itemMeta);
+                return item;*/
+
+                item = new ItemStack(Material.BARRIER);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lChasseur");
+                /*itemLore.add("§7Catégorie :§c Soutien - Équipement");
+                itemLore.add("§7Description : §fClasse de soutien qui permet");
+                itemLore.add("§fde créer toute une panoplie d'armes et d'armures");
+                itemLore.add("§fdifférentes.");
+                itemLore.add("§7Avantages : §aExcellent support en équipe. Tanky.");
+                itemLore.add("§7Désavantages : §cPlutôt faible en combat pur.");*/
+                itemLore.add("Désactivé pour cause de bug");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
+
             }
             case ALCHEMIST -> {
                 item = new ItemStack(Material.POTION);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lAlchimiste");
+                itemLore.add("§7Catégorie :§c Soutien - Effets de potions");
+                itemLore.add("§7Description : §fClasse de soutien qui permet");
+                itemLore.add("§fde créer toute une panoplie de potions défensives");
+                itemLore.add("§fcomme offensives.");
+                itemLore.add("§7Avantages : §aExcellent support en équipe. Agile.");
+                itemLore.add("§7Désavantages : §cPlutôt faible en combat pur.");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+                item.setItemMeta(itemMeta);
                 return item;
             }
             case BLACKSMITH -> {
-                item = new ItemStack(Material.ANVIL);
+                item = new ItemStack(Material.BARRIER);
+                itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName("§7§lForgeron");
+                /*itemLore.add("§7Catégorie :§c Soutien - Équipement");
+                itemLore.add("§7Description : §fClasse de soutien qui permet");
+                itemLore.add("§fde créer toute une panoplie d'armes et d'armures");
+                itemLore.add("§fdifférentes.");
+                itemLore.add("§7Avantages : §aExcellent support en équipe. Tanky.");
+                itemLore.add("§7Désavantages : §cPlutôt faible en combat pur.");*/
+                itemLore.add("En cours de développement...");
+                itemMeta.setLore(itemLore);
+                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                item.setItemMeta(itemMeta);
                 return item;
             }
 
@@ -235,6 +287,15 @@ public final class ClassSelection {
         Inventory inventory = Bukkit.createInventory(null, 18, "§2§lChoisissez une classe !");
         for (ClassEnums classEnums : ClassEnums.values()) {
             inventory.addItem(getItem(classEnums));
+        }
+        for (int i = 0; i < 6; i++) {
+            ItemStack glasspan = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+            ItemMeta meta = glasspan.getItemMeta();
+            meta.setDisplayName(" ");
+            meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(),"generic.attack_damage", i, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            glasspan.setItemMeta(meta);
+            inventory.addItem(glasspan);
         }
 
         return inventory;
@@ -269,9 +330,15 @@ public final class ClassSelection {
             case FISHMAN -> {
                 return new Fishman(player);
             }
-            case HUNTER -> {
+            /*case HUNTER -> {
                 return new Hunter(player);
+            }*/
+            case ALCHEMIST -> {
+                return new Alchimist(player);
             }
+            /*case BLACKSMITH -> {
+                return new Blacksmith(player);
+            }*/
         }
         return null;
     }

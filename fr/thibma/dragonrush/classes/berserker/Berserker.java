@@ -33,6 +33,11 @@ public class Berserker extends Class {
     public ClassEnums getEnum() { return ClassEnums.BERSERKER; }
 
     @Override
+    public String getClassName() {
+        return "Berserker";
+    }
+
+    @Override
     public void atBegining() {
         ItemStack trident = new ItemStack(Material.STONE_AXE);
         ItemMeta itemMeta = trident.getItemMeta();

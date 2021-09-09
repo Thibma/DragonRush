@@ -32,6 +32,11 @@ public class Assassin extends Class {
     public ClassEnums getEnum() { return ClassEnums.ASSASSIN; }
 
     @Override
+    public String getClassName() {
+        return "Assassin";
+    }
+
+    @Override
     public void atBegining() {
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(14);
         this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.11);

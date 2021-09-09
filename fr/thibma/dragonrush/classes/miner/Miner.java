@@ -40,6 +40,11 @@ public class Miner extends Class {
     public ClassEnums getEnum() { return ClassEnums.MINER; }
 
     @Override
+    public String getClassName() {
+        return "Mineur";
+    }
+
+    @Override
     public void atBegining() {
         ItemStack stonePickaxe = new ItemStack(Material.STONE_PICKAXE);
         ItemMeta itemMeta = stonePickaxe.getItemMeta();

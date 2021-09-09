@@ -38,6 +38,11 @@ public class Archer extends Class {
     }
 
     @Override
+    public String getClassName() {
+        return "Archer";
+    }
+
+    @Override
     public void atBegining() {
         ItemStack bow = new ItemStack(Material.BOW);
         ItemMeta itemMeta = bow.getItemMeta();
@@ -88,7 +93,6 @@ public class Archer extends Class {
     public void objectiveLevel3() {
         super.objectiveLevel3();
         this.potionEffect();
-        System.out.println(this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getBaseValue());
         this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.12);
         HandlerList.unregisterAll(this.archerLevel2Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.archerLevel3, JavaPlugin.getPlugin(DragonRush.class));

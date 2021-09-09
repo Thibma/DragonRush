@@ -15,12 +15,12 @@ public class Teams {
 
     public Teams() {
         this.teamList.add(new Team("Rouge", DyeColor.RED, ChatColor.RED));
-        this.teamList.add(new Team("Bleu", DyeColor.BLUE, ChatColor.DARK_AQUA));
+        this.teamList.add(new Team("Bleu", DyeColor.BLUE, ChatColor.BLUE));
         this.teamList.add(new Team("Vert", DyeColor.GREEN, ChatColor.GREEN));
         this.teamList.add(new Team("Jaune", DyeColor.YELLOW, ChatColor.YELLOW));
         this.teamList.add(new Team("Violet", DyeColor.PURPLE, ChatColor.DARK_PURPLE));
         this.teamList.add(new Team("Gris", DyeColor.LIGHT_GRAY, ChatColor.GRAY));
-        this.teamList.add(new Team("Cyan", DyeColor.CYAN, ChatColor.BLUE));
+        this.teamList.add(new Team("Cyan", DyeColor.CYAN, ChatColor.DARK_AQUA));
         this.teamList.add(new Team("Blanc", DyeColor.WHITE, ChatColor.WHITE));
         this.teamList.add(new Team("Rose", DyeColor.MAGENTA, ChatColor.LIGHT_PURPLE));
     }

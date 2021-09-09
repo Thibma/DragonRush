@@ -35,6 +35,11 @@ public class NetherExplorer extends Class {
     public ClassEnums getEnum() { return ClassEnums.NETHER_EXPLORER; }
 
     @Override
+    public String getClassName() {
+        return "Explorateur du Nether";
+    }
+
+    @Override
     public void atBegining() {
         ItemStack obsidian = new ItemStack(Material.OBSIDIAN);
         ItemMeta itemMeta = obsidian.getItemMeta();

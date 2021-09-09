@@ -1,9 +1,8 @@
 package fr.thibma.dragonrush.classes.hunter;
 
-import net.minecraft.server.v1_16_R3.*;
-import org.bukkit.Location;
-
-import java.util.EnumSet;
+import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.world.entity.EntityInsentient;
+import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 
 public class PathfinderGoalFollowPlayer extends PathfinderGoal {
 
@@ -30,7 +29,7 @@ public class PathfinderGoalFollowPlayer extends PathfinderGoal {
             return false;
         }
 
-        else if (this.owner.h(this.pet) > (double) (this.distance * this.distance)) {
+        else if (this.owner.getBukkitEntity().getLocation().distance(this.pet.getBukkitEntity().getLocation()) > (double) (this.distance * this.distance)) {
             System.out.println("tp");
             pet.setPosition(this.owner.locX(), this.owner.locY(), this.owner.locZ());
             return false;

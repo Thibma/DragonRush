@@ -13,6 +13,7 @@ public abstract class Class {
     public Player getPlayer() { return player; }
 
     public abstract ClassEnums getEnum();
+    public abstract String getClassName();
 
     public abstract void atBegining();
 

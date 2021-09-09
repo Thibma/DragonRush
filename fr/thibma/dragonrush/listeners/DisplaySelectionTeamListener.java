@@ -66,6 +66,7 @@ public class DisplaySelectionTeamListener implements Listener {
         }
 
         player.sendMessage("Vous avez etez ajouté à l'équipe " + team.getColorString() + team.getName());
+        player.closeInventory();
     }
 
     @EventHandler

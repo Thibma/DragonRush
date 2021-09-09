@@ -36,6 +36,11 @@ public class Fishman extends Class {
     public ClassEnums getEnum() { return ClassEnums.FISHMAN; }
 
     @Override
+    public String getClassName() {
+        return "Homme-poisson";
+    }
+
+    @Override
     public void atBegining() {
         this.potionEffect();
         Bukkit.getServer().getPluginManager().registerEvents(this.fishmanLevel1, this.plugin);
@@ -79,7 +84,7 @@ public class Fishman extends Class {
         lore.add("§6§l Nami, Aquamancienne");
         lore.add("");
         lore.add("§7Clic droit : ");
-        lore.add("§eInonde §2toute la zone au dessus");
+        lore.add("§e Inonde §2toute la zone au dessus");
         lore.add("§2 du lanceur. Les sources d'eau dûrent");
         lore.add("§6 3 secondes. §9(180s)");
         itemMeta.setLore(lore);

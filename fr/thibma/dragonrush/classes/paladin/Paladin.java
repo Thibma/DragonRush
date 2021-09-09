@@ -34,6 +34,11 @@ public class Paladin extends Class {
     public ClassEnums getEnum() { return ClassEnums.PALADIN; }
 
     @Override
+    public String getClassName() {
+        return "Paladin";
+    }
+
+    @Override
     public void atBegining() {
         ItemStack shield = new ItemStack(Material.SHIELD);
         ItemMeta itemMeta = shield.getItemMeta();

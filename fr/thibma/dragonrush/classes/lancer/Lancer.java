@@ -36,6 +36,11 @@ public class Lancer extends Class {
     public ClassEnums getEnum() { return ClassEnums.LANCER; }
 
     @Override
+    public String getClassName() {
+        return "Lancier";
+    }
+
+    @Override
     public void atBegining() {
         ItemStack trident = new ItemStack(Material.TRIDENT);
         ItemMeta itemMeta = trident.getItemMeta();

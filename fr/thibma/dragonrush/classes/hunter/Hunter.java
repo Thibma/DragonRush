@@ -37,6 +37,11 @@ public class Hunter extends Class {
     public ClassEnums getEnum() { return ClassEnums.HUNTER; }
 
     @Override
+    public String getClassName() {
+        return "Chasseur";
+    }
+
+    @Override
     public void atBegining() {
         this.hunterWolf.runTaskTimer(this.plugin, 0, 20);
         Bukkit.getServer().getPluginManager().registerEvents(this.hunterLevel1Listener, this.plugin);
