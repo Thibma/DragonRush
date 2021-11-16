@@ -19,7 +19,7 @@ public class Team {
     private final DyeColor color;
     private final ChatColor chatColor;
 
-    private final List<Player> playerList = new ArrayList<>();
+    private final ArrayList<Player> playerList = new ArrayList<>();
 
     public Team(String name, DyeColor color, ChatColor chatColor) {
         this.name = name;
@@ -46,7 +46,9 @@ public class Team {
     }
 
     public void addPlayer(Player player) { this.playerList.add(player); }
-    public void removePlayer(Player player) { this.playerList.remove(player); }
+    public void removePlayer(Player player) {
+        this.playerList.removeIf(i -> i.equals(player));
+    }
 
     public ChatColor getColorString() { return this.chatColor; }
     public String getName() { return this.name; }

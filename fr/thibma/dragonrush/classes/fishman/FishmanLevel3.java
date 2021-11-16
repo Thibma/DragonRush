@@ -3,6 +3,7 @@ package fr.thibma.dragonrush.classes.fishman;
 import fr.thibma.dragonrush.DragonRush;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -61,7 +62,11 @@ public class FishmanLevel3 implements Listener {
                     }
                     if (limit < 5) {
                         waterLocation.add(water);
-                        water.getBlock().setType(Material.WATER);
+                        if (player.getWorld().getEnvironment() == World.Environment.NETHER) {
+                            water.getBlock().setType(Material.COBBLESTONE);
+                        } else {
+                            water.getBlock().setType(Material.WATER);
+                        }
                     }
                 }
             }

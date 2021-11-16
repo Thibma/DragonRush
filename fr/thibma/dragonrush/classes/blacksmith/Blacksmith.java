@@ -3,6 +3,9 @@ package fr.thibma.dragonrush.classes.blacksmith;
 import fr.thibma.dragonrush.classes.Class;
 import fr.thibma.dragonrush.classes.ClassEnums;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
 
 public class Blacksmith extends Class {
 
@@ -34,6 +37,16 @@ public class Blacksmith extends Class {
     @Override
     public void potionEffect() {
 
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        return null;
     }
 
     @Override

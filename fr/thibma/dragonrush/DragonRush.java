@@ -7,10 +7,13 @@ import com.sk89q.worldedit.WorldEdit;
 import fr.minuskube.netherboard.Netherboard;
 import fr.minuskube.netherboard.bukkit.BPlayerBoard;
 import fr.thibma.dragonrush.classes.Classes;
+import fr.thibma.dragonrush.commands.ClassCommands;
+import fr.thibma.dragonrush.commands.TabCompleter;
 import fr.thibma.dragonrush.items.Crafts;
 import fr.thibma.dragonrush.items.MenuItem;
 import fr.thibma.dragonrush.listeners.*;
 import fr.thibma.dragonrush.players.Teams;
+import fr.thibma.dragonrush.timers.TimerLaunchGame;
 import net.minecraft.network.chat.ChatComponentText;
 import net.minecraft.network.protocol.game.PacketPlayOutPlayerListHeaderFooter;
 import org.bukkit.entity.Player;
@@ -21,6 +24,8 @@ public class DragonRush extends JavaPlugin {
     public static State state;
     public static Teams teams = new Teams();
     public static Classes classes = new Classes();
+
+    public static TimerLaunchGame timerLaunchGame = new TimerLaunchGame();
 
     @Override
     public void onEnable() {
@@ -40,6 +45,12 @@ public class DragonRush extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new DragonEggListener(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
         this.getServer().getPluginManager().registerEvents(new StartGameListener(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerLeaveListener(), this);
+        this.getServer().getPluginManager().registerEvents(new PersonalItemsListener(), this);
+        this.getServer().getPluginManager().registerEvents(new AddClassListener(), this);
+
+        this.getCommand("class").setExecutor(new ClassCommands());
+        this.getCommand("class").setTabCompleter(new TabCompleter());
 
     }
 

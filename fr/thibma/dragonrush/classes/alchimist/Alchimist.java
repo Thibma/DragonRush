@@ -15,6 +15,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Alchimist extends Class {
 
@@ -37,36 +38,7 @@ public class Alchimist extends Class {
 
     @Override
     public void atBegining() {
-        ItemStack bottle = new ItemStack(Material.GLASS_BOTTLE);
-        ItemMeta itemMeta = bottle.getItemMeta();
-        ArrayList<String> lore = new ArrayList<>();
-        itemMeta.setDisplayName("§fFlacon en verre");
-        lore.add("§fCommun");
-        lore.add("§aUn récipiant pouvant contenir plusieurs");
-        lore.add("§asubstances. Utilisé pour les crafts");
-        lore.add("§ade potions.");
-        itemMeta.setLore(lore);
-        itemMeta.setUnbreakable(true);
-        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        bottle.setItemMeta(itemMeta);
-        bottle.setAmount(5);
-        this.player.getInventory().addItem(bottle);
-
-        ItemStack gunpowder = new ItemStack(Material.GUNPOWDER);
-        itemMeta = gunpowder.getItemMeta();
-        lore = new ArrayList<>();
-        itemMeta.setDisplayName("§fPoudre de Creeper");
-        lore.add("§fCommun");
-        lore.add("§aCe produit permet de transformet des flacons");
-        lore.add("§aen explosifs. Utilisé pour les crafts");
-        lore.add("§ade potions.");
-        itemMeta.setLore(lore);
-        itemMeta.setUnbreakable(true);
-        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        gunpowder.setItemMeta(itemMeta);
-        gunpowder.setAmount(5);
-        this.player.getInventory().addItem(gunpowder);
-
+        super.atBegining();
         Bukkit.getServer().getPluginManager().registerEvents(this.alchemistLevel1Listener, this.plugin);
     }
 
@@ -88,6 +60,44 @@ public class Alchimist extends Class {
     @Override
     public void potionEffect() {
 
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        ItemStack bottle = new ItemStack(Material.GLASS_BOTTLE);
+        ItemMeta itemMeta = bottle.getItemMeta();
+        ArrayList<String> lore = new ArrayList<>();
+        itemMeta.setDisplayName("§fFlacon en verre");
+        lore.add("§fCommun");
+        lore.add("§aUn récipiant pouvant contenir plusieurs");
+        lore.add("§asubstances. Utilisé pour les crafts");
+        lore.add("§ade potions.");
+        itemMeta.setLore(lore);
+        itemMeta.setUnbreakable(true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        bottle.setItemMeta(itemMeta);
+        bottle.setAmount(5);
+
+        ItemStack gunpowder = new ItemStack(Material.GUNPOWDER);
+        itemMeta = gunpowder.getItemMeta();
+        lore = new ArrayList<>();
+        itemMeta.setDisplayName("§fPoudre de Creeper");
+        lore.add("§fCommun");
+        lore.add("§aCe produit permet de transformet des flacons");
+        lore.add("§aen explosifs. Utilisé pour les crafts");
+        lore.add("§ade potions.");
+        itemMeta.setLore(lore);
+        itemMeta.setUnbreakable(true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        gunpowder.setItemMeta(itemMeta);
+        gunpowder.setAmount(5);
+
+        return new ArrayList<>(List.of(bottle, gunpowder));
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        return new ArrayList<>();
     }
 
     @Override

@@ -17,5 +17,4 @@ public class EntityDeathListener implements Listener {
     public void onEntityDeathListener(EntityDeathEvent event) {
 
     }
-
 }

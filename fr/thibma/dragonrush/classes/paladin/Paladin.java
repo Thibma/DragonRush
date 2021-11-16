@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemFlag;
@@ -15,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Paladin extends Class {
 
@@ -25,7 +27,6 @@ public class Paladin extends Class {
     private final PaladinLevel2 paladinLevel2 = new PaladinLevel2(this);
     private final PaladinLevel2Listener paladinLevel2Listener = new PaladinLevel2Listener(this);
     private final PaladinLevel3 paladinLevel3 = new PaladinLevel3(this);
-    private final PaladinSkillProtection paladinSkillProtection = new PaladinSkillProtection(this);
     private final PaladinDisadvantage paladinDisadvantage = new PaladinDisadvantage(this);
 
     public Paladin(Player player) { this.player = player; }
@@ -40,22 +41,7 @@ public class Paladin extends Class {
 
     @Override
     public void atBegining() {
-        ItemStack shield = new ItemStack(Material.SHIELD);
-        ItemMeta itemMeta = shield.getItemMeta();
-        ArrayList<String> lore = new ArrayList<>();
-        itemMeta.setDisplayName("§fÉcu renforcé");
-        lore.add("§fCommun");
-        lore.add("§aCe bouclier donné à des chevaliers");
-        lore.add("§apermet de protéger ses alliés des attaques.");
-        lore.add("");
-        lore.add("§7Clic droit : ");
-        lore.add("§2 Bloquer une attaque de mêlée ou un projectile.");
-        itemMeta.setLore(lore);
-        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        shield.setItemMeta(itemMeta);
-        shield.addEnchantment(Enchantment.DURABILITY, 2);
-        this.player.getInventory().addItem(shield);
-
+        super.atBegining();
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(22);
         Bukkit.getServer().getPluginManager().registerEvents(this.paladinLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
         Bukkit.getServer().getPluginManager().registerEvents(this.paladinDisadvantage, JavaPlugin.getPlugin(DragonRush.class));
@@ -77,14 +63,41 @@ public class Paladin extends Class {
         super.objectiveLevel3();
         HandlerList.unregisterAll(this.paladinLevel2Listener);
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(32);
-        this.player.getInventory().addItem(this.paladinSkillItem());
         Bukkit.getServer().getPluginManager().registerEvents(this.paladinLevel3, JavaPlugin.getPlugin(DragonRush.class));
-        Bukkit.getServer().getPluginManager().registerEvents(this.paladinSkillProtection, JavaPlugin.getPlugin(DragonRush.class));
     }
 
     @Override
     public void potionEffect() {
 
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        ItemStack shield = new ItemStack(Material.SHIELD);
+        ItemMeta itemMeta = shield.getItemMeta();
+        ArrayList<String> lore = new ArrayList<>();
+        itemMeta.setDisplayName("§fÉcu renforcé");
+        lore.add("§fCommun");
+        lore.add("§aCe bouclier donné à des chevaliers");
+        lore.add("§apermet de protéger ses alliés des attaques.");
+        lore.add("");
+        lore.add("§7Clic droit : ");
+        lore.add("§2 Bloquer une attaque de mêlée ou un projectile.");
+        itemMeta.setLore(lore);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        shield.setItemMeta(itemMeta);
+        shield.addEnchantment(Enchantment.DURABILITY, 2);
+
+        return new ArrayList<>(List.of(shield));
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        ArrayList<ItemStack> listSkills = new ArrayList<>();
+        if (level == 3) {
+            listSkills.add(paladinSkillItem());
+        }
+        return listSkills;
     }
 
     public ItemStack paladinSkillItem() {
@@ -115,7 +128,6 @@ public class Paladin extends Class {
         HandlerList.unregisterAll(this.paladinLevel2);
         HandlerList.unregisterAll(this.paladinLevel2Listener);
         HandlerList.unregisterAll(this.paladinLevel3);
-        HandlerList.unregisterAll(this.paladinSkillProtection);
         HandlerList.unregisterAll(this.paladinDisadvantage);
     }
 }

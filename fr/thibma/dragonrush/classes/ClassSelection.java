@@ -24,6 +24,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -283,8 +284,15 @@ public final class ClassSelection {
         return null;
     }
 
-    public static Inventory getClassSelectionInventory() {
-        Inventory inventory = Bukkit.createInventory(null, 18, "§2§lChoisissez une classe !");
+    public static Inventory getClassSelectionInventory(String classname) {
+        Inventory inventory;
+        if (classname == null) {
+            inventory = Bukkit.createInventory(null, 18, "§2§lChoisissez une classe !");
+        }
+        else {
+            inventory = Bukkit.createInventory(null, 18, "§2§lClasse choisie : §7§l" + classname);
+        }
+
         for (ClassEnums classEnums : ClassEnums.values()) {
             inventory.addItem(getItem(classEnums));
         }
@@ -301,6 +309,7 @@ public final class ClassSelection {
         return inventory;
     }
 
+    @Nonnull
     public static Class getClass(ClassEnums classEnums, Player player) {
         switch (classEnums) {
             case SWORDSMAN -> {
@@ -340,6 +349,6 @@ public final class ClassSelection {
                 return new Blacksmith(player);
             }*/
         }
-        return null;
+        return new Swordman(player);
     }
 }

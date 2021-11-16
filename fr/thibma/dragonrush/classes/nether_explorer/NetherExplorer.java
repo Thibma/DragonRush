@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class NetherExplorer extends Class {
@@ -41,6 +42,19 @@ public class NetherExplorer extends Class {
 
     @Override
     public void atBegining() {
+        super.atBegining();
+        Bukkit.getServer().getPluginManager().registerEvents(this.netherExplorerLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
+        this.objectiveLevel2();
+        this.objectiveLevel3();
+    }
+
+    @Override
+    public void potionEffect() {
+
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
         ItemStack obsidian = new ItemStack(Material.OBSIDIAN);
         ItemMeta itemMeta = obsidian.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
@@ -67,15 +81,19 @@ public class NetherExplorer extends Class {
         itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         flintAndSteel.setItemMeta(itemMeta);
 
-        this.player.getInventory().addItem(obsidian, flintAndSteel);
-        Bukkit.getServer().getPluginManager().registerEvents(this.netherExplorerLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
-        this.objectiveLevel2();
-        this.objectiveLevel3();
+        return new ArrayList<>(List.of(obsidian, flintAndSteel));
     }
 
     @Override
-    public void potionEffect() {
-
+    public ArrayList<ItemStack> skills() {
+        ArrayList<ItemStack> listSkill = new ArrayList<>();
+        if (this.level >= 2) {
+            listSkill.add(skillItemLevel2());
+        }
+        if (this.level == 3) {
+            listSkill.add(skillItemLevel3());
+        }
+        return listSkill;
     }
 
     protected ItemStack skillItemLevel2() {
@@ -131,7 +149,6 @@ public class NetherExplorer extends Class {
         for (Player playerTeam : DragonRush.teams.getTeamOfAPlayer(this.getPlayer()).getPlayerList()) {
             this.netherExplorerLevel2.detectDimension(playerTeam);
         }
-        this.getPlayer().getInventory().addItem(this.skillItemLevel2());
     }
 
     @Override
@@ -142,7 +159,6 @@ public class NetherExplorer extends Class {
         for (Player playerTeam : DragonRush.teams.getTeamOfAPlayer(this.getPlayer()).getPlayerList()) {
             this.netherExplorerLevel2.detectDimension(playerTeam);
         }
-        this.getPlayer().getInventory().addItem(this.skillItemLevel3());
     }
 
     @Override

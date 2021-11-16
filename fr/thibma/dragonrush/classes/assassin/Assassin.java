@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Handler;
 
 public class Assassin extends Class {
@@ -38,6 +39,7 @@ public class Assassin extends Class {
 
     @Override
     public void atBegining() {
+        super.atBegining();
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(14);
         this.player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.11);
 
@@ -48,7 +50,6 @@ public class Assassin extends Class {
     public void objectiveLevel2() {
         super.objectiveLevel2();
         HandlerList.unregisterAll(this.assassinLevel2Listener);
-        this.player.getInventory().addItem(this.assassinSkillItem());
         Bukkit.getServer().getPluginManager().registerEvents(this.assassinLevel2, JavaPlugin.getPlugin(DragonRush.class));
         Bukkit.getServer().getPluginManager().registerEvents(this.assassinLevel3Listener, JavaPlugin.getPlugin(DragonRush.class));
     }
@@ -62,7 +63,21 @@ public class Assassin extends Class {
 
     @Override
     public void potionEffect() {
+        // Nothing
+    }
 
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        ArrayList<ItemStack> skillList = new ArrayList<>();
+        if (this.level >= 2) {
+            skillList.add(assassinSkillItem());
+        }
+        return skillList;
     }
 
     public ItemStack assassinSkillItem() {

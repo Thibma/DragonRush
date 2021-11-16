@@ -42,7 +42,7 @@ public class Fishman extends Class {
 
     @Override
     public void atBegining() {
-        this.potionEffect();
+        super.atBegining();
         Bukkit.getServer().getPluginManager().registerEvents(this.fishmanLevel1, this.plugin);
         Bukkit.getServer().getPluginManager().registerEvents(this.fishmanLevel1Listener, this.plugin);
         this.objectiveLevel2();
@@ -61,7 +61,6 @@ public class Fishman extends Class {
         super.objectiveLevel3();
         HandlerList.unregisterAll(this.fishmanLevel2Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.fishmanLevel3, this.plugin);
-        this.player.getInventory().addItem(this.skillFishman());
     }
 
     @Override
@@ -72,6 +71,20 @@ public class Fishman extends Class {
         if (this.level >= 2) {
             this.player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, Integer.MAX_VALUE, 0));
         }
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        ArrayList<ItemStack> listSkill = new ArrayList<>();
+        if (level == 3) {
+            listSkill.add(skillFishman());
+        }
+        return listSkill;
     }
 
     protected ItemStack skillFishman() {

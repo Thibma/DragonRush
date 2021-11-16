@@ -44,34 +44,7 @@ public class Archer extends Class {
 
     @Override
     public void atBegining() {
-        ItemStack bow = new ItemStack(Material.BOW);
-        ItemMeta itemMeta = bow.getItemMeta();
-        ArrayList<String> lore = new ArrayList<>();
-        itemMeta.setDisplayName("§fArc court");
-        lore.add("§fCommun");
-        lore.add("§aUn arc fait de bois donné à des");
-        lore.add("§aapprentis archers.");
-        lore.add("");
-        lore.add("§7Projectile tiré : ");
-        lore.add("§2 1 point d'attaque -> 10 points d'attaque");
-        lore.add("§2 (En fonction de la charge)");
-        itemMeta.setLore(lore);
-        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        bow.setItemMeta(itemMeta);
-        this.player.getInventory().addItem(bow);
-
-        ItemStack arrow = new ItemStack(Material.ARROW);
-        ItemMeta itemMetaArrow = arrow.getItemMeta();
-        ArrayList<String> loreArrow = new ArrayList<>();
-        itemMetaArrow.setDisplayName("§fFlèche d'entraînement");
-        loreArrow.add("§fCommun");
-        loreArrow.add("§aUne flèche utilisée lors des");
-        loreArrow.add("§aentraînements sur des cibles fixes.");
-        itemMetaArrow.setLore(loreArrow);
-        arrow.setItemMeta(itemMetaArrow);
-        arrow.setAmount(32);
-        this.player.getInventory().addItem(arrow);
-
+        super.atBegining();
         Bukkit.getServer().getPluginManager().registerEvents(this.archerLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
         this.player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(16);
         this.player.setHealth(16);
@@ -102,6 +75,42 @@ public class Archer extends Class {
     public void potionEffect() {
         PotionEffect nightVision = new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0);
         this.player.addPotionEffect(nightVision);
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        ItemStack bow = new ItemStack(Material.BOW);
+        ItemMeta itemMeta = bow.getItemMeta();
+        ArrayList<String> lore = new ArrayList<>();
+        itemMeta.setDisplayName("§fArc court");
+        lore.add("§fCommun");
+        lore.add("§aUn arc fait de bois donné à des");
+        lore.add("§aapprentis archers.");
+        lore.add("");
+        lore.add("§7Projectile tiré : ");
+        lore.add("§2 1 point d'attaque -> 10 points d'attaque");
+        lore.add("§2 (En fonction de la charge)");
+        itemMeta.setLore(lore);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        bow.setItemMeta(itemMeta);
+
+        ItemStack arrow = new ItemStack(Material.ARROW);
+        ItemMeta itemMetaArrow = arrow.getItemMeta();
+        ArrayList<String> loreArrow = new ArrayList<>();
+        itemMetaArrow.setDisplayName("§fFlèche d'entraînement");
+        loreArrow.add("§fCommun");
+        loreArrow.add("§aUne flèche utilisée lors des");
+        loreArrow.add("§aentraînements sur des cibles fixes.");
+        itemMetaArrow.setLore(loreArrow);
+        arrow.setItemMeta(itemMetaArrow);
+        arrow.setAmount(32);
+
+        return new ArrayList<>(List.of(bow, arrow));
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        return new ArrayList<>();
     }
 
     @Override

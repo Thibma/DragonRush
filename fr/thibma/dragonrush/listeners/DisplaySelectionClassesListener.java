@@ -3,8 +3,10 @@ package fr.thibma.dragonrush.listeners;
 import fr.minuskube.netherboard.Netherboard;
 import fr.minuskube.netherboard.bukkit.BPlayerBoard;
 import fr.thibma.dragonrush.DragonRush;
+import fr.thibma.dragonrush.State;
 import fr.thibma.dragonrush.classes.ClassEnums;
 import fr.thibma.dragonrush.classes.ClassSelection;
+import fr.thibma.dragonrush.events.AddClassEvent;
 import fr.thibma.dragonrush.events.DisplaySelectionClassesEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -21,7 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class DisplaySelectionClassesListener implements Listener {
 
-    private final Inventory inventory = ClassSelection.getClassSelectionInventory();
+    private final Inventory inventory = ClassSelection.getClassSelectionInventory(null);
 
     @EventHandler
     public void onDisplaySelectionClasses(DisplaySelectionClassesEvent event) {
@@ -48,11 +50,7 @@ public class DisplaySelectionClassesListener implements Listener {
 
         final Player player = (Player) event.getWhoClicked();
 
-        //player.sendMessage("Choix de la classe : " + ClassSelection.getClassEnum(event.getSlot()));
-        DragonRush.classes.addClass(ClassSelection.getClass(ClassSelection.getClassEnum(event.getSlot()), player));
-        DragonRush.classes.getPlayerClass(player).atBegining();
-        BPlayerBoard board = Netherboard.instance().getBoard(player);
-        board.set("§7§l" + DragonRush.classes.getPlayerClass(player).getClassName(), 8);
+        Bukkit.getServer().getPluginManager().callEvent(new AddClassEvent(player, ClassSelection.getClassEnum(event.getSlot())));
     }
 
     @EventHandler
@@ -65,8 +63,10 @@ public class DisplaySelectionClassesListener implements Listener {
     @EventHandler
     public void onInventoryLeave(InventoryCloseEvent event) {
         if (event.getInventory() == this.inventory) {
-            //Bukkit.getScheduler().scheduleSyncDelayedTask(JavaPlugin.getPlugin(DragonRush.class), () -> event.getPlayer().openInventory(inventory), 1);
-
+            Bukkit.getScheduler().scheduleSyncDelayedTask(JavaPlugin.getPlugin(DragonRush.class), () -> event.getPlayer().openInventory(inventory), 1);
+        }
+        else if (DragonRush.state == State.WAITING && DragonRush.classes.getPlayerClass((Player) event.getPlayer()) != null) {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(JavaPlugin.getPlugin(DragonRush.class), () -> event.getPlayer().openInventory(DragonRush.classes.getPlayerClass((Player) event.getPlayer()).selectionClassInventory), 1);
         }
     }
 

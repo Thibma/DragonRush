@@ -46,25 +46,7 @@ public class Swordman extends Class {
 
     @Override
     public void atBegining() {
-        ItemStack stoneSword = new ItemStack(Material.STONE_SWORD);
-        ItemMeta itemMeta = stoneSword.getItemMeta();
-        ArrayList<String> lore = new ArrayList<>();
-        itemMeta.setDisplayName("§fÉpée en pierre améliorée");
-        lore.add("§fCommun");
-        lore.add("§aUne épée en pierre donnée à des");
-        lore.add("§aapprentis chevaliers.");
-        lore.add("");
-        lore.add("§7Dans la main principale : ");
-        lore.add("§2 5 de points d'attaque §6(+1)");
-        lore.add("§2 1.6 de vitesse d'attaque");
-        itemMeta.setLore(lore);
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(),"generic.attack_damage", 5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "generic.attack_speed", -2.4, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
-        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        stoneSword.setItemMeta(itemMeta);
-
-        this.player.getInventory().addItem(stoneSword);
-
+        super.atBegining();
         Bukkit.getServer().getPluginManager().registerEvents(this.swordmanDisadvantages, JavaPlugin.getPlugin(DragonRush.class));
         Bukkit.getServer().getPluginManager().registerEvents(this.swordmanLevel1Listener, JavaPlugin.getPlugin(DragonRush.class));
 
@@ -88,6 +70,33 @@ public class Swordman extends Class {
     @Override
     public void potionEffect() {
         // Nothing
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        ItemStack stoneSword = new ItemStack(Material.STONE_SWORD);
+        ItemMeta itemMeta = stoneSword.getItemMeta();
+        ArrayList<String> lore = new ArrayList<>();
+        itemMeta.setDisplayName("§fÉpée en pierre améliorée");
+        lore.add("§fCommun");
+        lore.add("§aUne épée en pierre donnée à des");
+        lore.add("§aapprentis chevaliers.");
+        lore.add("");
+        lore.add("§7Dans la main principale : ");
+        lore.add("§2 5 de points d'attaque §6(+1)");
+        lore.add("§2 1.6 de vitesse d'attaque");
+        itemMeta.setLore(lore);
+        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(),"generic.attack_damage", 5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "generic.attack_speed", -2.4, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        stoneSword.setItemMeta(itemMeta);
+
+        return new ArrayList<>(List.of(stoneSword));
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        return new ArrayList<>();
     }
 
     @Override

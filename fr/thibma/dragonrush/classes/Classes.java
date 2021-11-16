@@ -34,6 +34,10 @@ public class Classes {
         return null;
     }
 
+    public void removePlayerClass(Player player) {
+        this.getClassList().removeIf(getClass -> player == getClass.getPlayer());
+    }
+
     @Override
     public String toString() {
         return "Classes{" +

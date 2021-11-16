@@ -4,3 +4,7 @@ author: Thibma
 main: fr.thibma.dragonrush.DragonRush
 depend: []
 api-version: 1.17
+commands:
+  class:
+    description: Permet de gérer la classe d'un joueur.
+    usage: /class

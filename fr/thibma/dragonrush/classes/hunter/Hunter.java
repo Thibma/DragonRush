@@ -15,6 +15,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Handler;
 
 public class Hunter extends Class {
@@ -43,6 +44,7 @@ public class Hunter extends Class {
 
     @Override
     public void atBegining() {
+        super.atBegining();
         this.hunterWolf.runTaskTimer(this.plugin, 0, 20);
         Bukkit.getServer().getPluginManager().registerEvents(this.hunterLevel1Listener, this.plugin);
         this.objectiveLevel2();
@@ -64,12 +66,25 @@ public class Hunter extends Class {
         HandlerList.unregisterAll(this.hunterLevel2Listener);
         Bukkit.getServer().getPluginManager().registerEvents(this.hunterLevel3, this.plugin);
         this.hunterWolf.boostLevel();
-        this.player.getInventory().addItem(this.hunterSkillItem());
     }
 
     @Override
     public void potionEffect() {
 
+    }
+
+    @Override
+    public ArrayList<ItemStack> itemSpawn() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<ItemStack> skills() {
+        ArrayList<ItemStack> listItem = new ArrayList<>();
+        if (this.level == 3) {
+            listItem.add(hunterSkillItem());
+        }
+        return listItem;
     }
 
     public ItemStack hunterSkillItem() {

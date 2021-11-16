@@ -1,5 +1,7 @@
 package fr.thibma.dragonrush.listeners;
 
+import fr.minuskube.netherboard.Netherboard;
+import fr.minuskube.netherboard.bukkit.BPlayerBoard;
 import fr.thibma.dragonrush.DragonRush;
 import fr.thibma.dragonrush.events.DisplaySelectionTeamEvent;
 import fr.thibma.dragonrush.events.PlayerAddedToTeamEvent;
@@ -66,6 +68,10 @@ public class DisplaySelectionTeamListener implements Listener {
         }
 
         player.sendMessage("Vous avez etez ajouté à l'équipe " + team.getColorString() + team.getName());
+
+        BPlayerBoard board = Netherboard.instance().getBoard(player);
+        board.set(team.getColorString() + team.getName(), 11);
+
         player.closeInventory();
     }
 
